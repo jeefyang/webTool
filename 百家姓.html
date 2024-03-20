@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百家姓</title>
+    <style>
+        .input {
+            width: 80%;
+            overflow: auto;
+            word-break: break-all;
+        }
+    </style>
+    <script src="./tool.js"></script>
+</head>
+
+<body>
+    <div>
+        <textarea name="origin" id="origin" cols="50" rows="10" class="input"></textarea>
+        <button class="encode">加密</button>
+        <button class="origincp">复制</button>
+    </div>
+    <div>
+        <textarea name="cal" id="cal" cols="50" rows="10" class="input"></textarea>
+        <button class="decode">还原</button>
+        <button class="calcp">复制</button>
+    </div>
+    <script>
+        let originText = document.getElementById("origin")
+        let calText = document.getElementById("cal")
+        let encodeBtn = document.getElementsByClassName("encode")[0]
+        let decodeBtn = document.getElementsByClassName("decode")[0]
+        let origincpBtn = document.getElementsByClassName("origincp")[0]
+        let calcpBtn = document.getElementsByClassName("calcp")[0]
+        console.log(originText, calText)
+
+        decodeBtn.addEventListener("click", () => {
+            try {
+                console.log("开始计算")
+                originText.value = calBaijiaxing(calText.value, "decode")
+            }
+            catch {
+                alert("参数不对")
+            }
+        })
+        encodeBtn.addEventListener("click", () => {
+            try {
+                console.log("开始计算")
+                calText.value = calBaijiaxing(originText.value, "encode")
+            }
+            catch {
+                alert("参数不对")
+            }
+        })
+        origincpBtn.addEventListener("click", () => {
+            try {
+                let c = copyStr(originText.value)
+                if (c) {
+                    alert("复制成功")
+                }
+            }
+            catch {
+                alert("参数不对")
+            }
+        })
+        calcpBtn.addEventListener("click", () => {
+            try {
+                let c = copyStr(calcpBtn.value)
+                if (c) {
+                    alert("复制成功")
+                }
+            }
+            catch {
+                alert("参数不对")
+            }
+        })
+    </script>
+</body>
+
+</html>
